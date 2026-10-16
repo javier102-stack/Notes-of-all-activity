@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Selected Color: <span id="selected">None</span></h2>
+    <label for="colors">Select Color: </label>
+    <select id="colors">
+        <option value="select" selected disabled hidden>select</option>
+        <option value="Red">Red</option>
+        <option value="Blue">Blue</option>
+        <option value="Green">Green</option>
+        <option value="Yellow">Yellow</option>
+    </select>
+    <button id="reset">reset</button>
+
+    <script>
+        const reset = document.getElementById("reset");
+        const color = document.getElementById("colors");
+        const result = document.getElementById("selected")
+
+        color.addEventListener("change", function() {
+            document.body.style.background = color.value;
+            result.textContent = color.value;
+        });
+
+        reset.addEventListener("click", function() {
+            document.body.style.background = "";
+            result.textContent = "None";
+            color.selectedIndex = 0;
+        });
+    </script>
+</body>
+</html>

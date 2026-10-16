@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modified Example</title>
+</head>
+<body>
+    <input type="number" id="text-input">
+    <button id="okay">Guess</button>
+    <button id="game-setter">start</button>
+    <br>
+    <h1 id="answer"></h1>
+
+    <script>
+        const result = document.getElementById("answer");
+        const button = document.getElementById("okay");
+        const reset = document.getElementById("game-setter");
+        const ready = document.getElementById("text-input");
+
+        let count = 0;
+        let bolean = false;
+        let random;
+
+        button.style.display = "none";
+        ready.style.display = "none";
+
+        reset.addEventListener("click", function() {
+            random = Math.floor(Math.random() * 100) + 1;
+            count = 0;
+            bolean = true;
+
+            reset.textContent = "reset";
+            button.style.display = "block";
+            ready.style.display = "block";
+            
+            ready.value = "";
+            result.textContent = "";
+        });
+
+        button.addEventListener("click", function() {
+
+            if (!bolean) {
+                result.textContent = "Please Start the Game";
+                return;
+            };
+
+            const input = ready.value;
+
+            if (input.trim() === ""){
+                result.textContent = "Error: Please Enter your number 1-100";
+                return;
+            }
+
+            const convert = Number(input);
+            count++;
+            if (convert > 100 || convert < 1){
+                result.textContent = "Guess only 1 - 100";
+            }
+            else if(random == convert){
+                result.textContent = `Correct! the answer is ${random}. Your attempt: ${count}`;
+                button.style.display = "none";
+                reset.textContent = "start";
+                return;    
+            }
+            else if (random > convert){
+                result.textContent = "Go higher";
+            }
+            else {
+                result.textContent = "Go lower";
+            }
+
+        });
+
+        
+    </script>
+</body>
+</html>

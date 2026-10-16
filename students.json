@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "Javier",
+        "year": "3",
+        "course": "BSIT"
+    },
+    {
+        "id": 2,
+        "name": "John",
+        "year": "2",
+        "course": "BSBA"
+    },
+    {
+        "id": 3,
+        "name": "Jason",
+        "year": "4",
+        "course": "BSBA"
+    },
+    {
+        "id": 4,
+        "name": "Niago",
+        "year": "1",
+        "course": "FPST"
+    },
+    {
+        "id": 5,
+        "name": "Granny",
+        "year": "4",
+        "course": "BSN"
+    }
+]

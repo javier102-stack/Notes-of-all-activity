@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the number</title>
+</head>
+<body>
+    <input type="number" id="num-g">
+    <button onclick="numberGuess()">Guess</button>
+    <button id="the-button">Enter</button>
+    <h1 id="result"></h1>
+
+    <script>
+        const random = Math.floor(Math.random() * 100) + 1;
+        const result = document.getElementById("result");
+        const button = document.getElementById("the-button");
+
+        let count = 0;
+        let bolean = false;
+
+        // function start(){
+        //     bolean = true;
+        //     numberGuess();
+        // }
+
+        function numberGuess(){
+            const input = document.getElementById("num-g").value;
+            
+            if (input.trim() === ""){
+                result.textContent = "Enter the Number!";
+                return;
+            }
+        
+            const convert = Number(input);
+        
+            ++count;
+            if (convert > 100 || convert < 1){
+                result.textContent = "Guess only 1 - 100";
+            }
+            else if(random == convert){
+                result.textContent = `Correct answer is: ${random} \nYour attempt: ${count}`;
+            }
+            else if (random > convert){
+                result.textContent = "Go higher";
+            }
+            else {
+                result.textContent = "Go lower";
+            }
+        }
+
+        button.addEventListener("click", () => {
+            numberGuess();
+            document.body.style.display = "block";
+        });
+    </script>
+</body>
+</html>

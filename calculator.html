@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="num1">
+    <input type="number" id="num2">
+    <br>
+    <label for="operation">Operations: </label>
+    <select id="operation">
+        <option value="" selected disabled hidden>select</option>
+        <option value="+">Addition</option>
+        <option value="-">Subtraction</option>
+        <option value="*">Multiplication</option>
+        <option value="/">Division</option>
+    </select>
+    <button id="calculate">Calculate</button>
+    <h2 id="answer"></h2>
+
+    <script>
+        let button = document.getElementById("calculate");
+        let result = document.getElementById("answer");
+        let operation = document.getElementById("operation");
+
+        button.addEventListener("click", function() {
+            const first_num = document.getElementById("num1").value;
+            const second_num = document.getElementById("num2").value;
+
+            try{
+
+                if(first_num.trim() === "" || second_num.trim() === ""){
+                    throw new Error("Don't calculate with a blank.");
+                }
+
+                const num1 = Number(first_num);
+                const num2 = Number(second_num);
+
+                if(operation.value == "+"){
+                    result.textContent = num1 + num2;
+                }
+                else if(operation.value == "-"){
+                    result.textContent = num1 - num2;
+                }
+                else if(operation.value == "*"){
+                    result.textContent = num1 * num2;
+                }
+                else if(operation.value == "/"){
+                    if(num2 === 0){
+                        throw new Error("Cannot be divided by Zero.");
+                    }
+                    else{
+                        result.textContent = num1 / num2;
+                    }
+                }
+                else{
+                    throw new Error("Please select an operation.")
+                }
+            }
+            catch(error){
+                result.textContent = `Error: ${error.message}`;
+            }
+
+        })
+
+    </script>
+</body>
+</html>

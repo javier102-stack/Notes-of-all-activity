@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="input-text">Enter your Guess:</label>
+    <input type="number" id="input-text">
+    <br>
+    <button id="guess">Guess</button>
+    <button id="reset">Start</button>
+    <h1 id="result"></h1>
+
+    <script>
+        const result = document.getElementById("result");
+        const input = document.getElementById("input-text");
+
+        let guess = document.getElementById("guess");
+        let reset = document.getElementById("reset");
+
+        let random;
+        let bolean = false;
+        let count = 0;
+
+        reset.addEventListener("click", function() {
+            random = Math.floor(Math.random() * 100) + 1;
+            bolean = true;
+            count = 0;
+
+            reset.textContent = "Reset Game";
+            input.value = "";
+            result.textContent = "";
+        })
+
+        guess.addEventListener("click", function() {
+
+            try {
+                if (!bolean){
+                    throw new Error("Please Start the Game first!");
+                    return;
+                }
+
+                const hello = input.value;
+
+                if (hello.trim() === ""){
+                    throw new Error("Please fill up first");
+                    return;
+                }
+
+                const fakeOne = Number(hello);
+
+                count++;
+                if (fakeOne > 100 || fakeOne < 1){
+                    throw new Error("Guess only 1-100");
+                }
+                else if (random == fakeOne){
+                    result.textContent = `Correct! the answer is ${random} Your attempt: ${count}`;
+                    return;
+                }
+                else if (random > fakeOne){
+                    result.textContent = `Go higher! Your attempt: ${count}`;
+                }
+                else{
+                    result.textContent = `Go Lower! Your attemp: ${count}`;
+                }
+
+            } catch (error) {
+                result.textContent = `Error: ${error.message}`;
+            }
+
+        })
+    </script>
+</body>
+</html>

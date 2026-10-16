@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sir Orit</title>
+</head>
+<body>
+    <!-- <p id="message">----</p> -->
+    <button onclick="changeText()">Click me</button>
+    <br>
+    <input id="name" type="text" onkeyup="displayName()">
+    <p id="result">The output is here</p>
+    <br>
+    <button id="checkoutBtn">Placed order</button>
+    <p id="message"></p>
+
+    <script>
+        function changeText(){
+            document.getElementById("message").textContent = "Button Clicked";
+        }
+
+        function displayName(){
+            let name = document.getElementById("name").value;
+            document.getElementById("result").textContent = name;
+        }
+
+        function orderConfirmed(){
+            document.getElementById("message").textContent = "Order placed successfully";
+        }
+
+        function checkout(callback){
+            document.getElementById("message").textContent = "Processing payment.....";
+
+            setTimeout(callback, 4000);
+        }
+
+        document.getElementById("checkoutBtn").addEventListener("click", function(){
+            checkout(orderConfirmed);
+        });
+
+
+    </script>
+</body>
+</html>

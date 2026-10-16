@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello world</h1>
+    <input type="number" id="input-id" >
+    <button id="walaman">Reveal</button>
+    <p id="results"></p>
+
+    <script>
+        const result = document.getElementById("results");
+        const output_error = document.getElementById("hello");
+        let button = document.getElementById("walaman");
+        
+        button.addEventListener("click", function() {
+            const input = document.getElementById("input-id");
+            
+                fetch("students.json")
+                .then((response) => response.json())
+                .then((data) => {
+                    
+                    const outstudent = data.find(
+                        students => students.id === Number(input.value)
+                    );
+
+                    if(outstudent) {
+                        result.innerHTML = `
+                        <div>
+                            <h2>Student ID: ${outstudent.id}</h2>
+                            <h3>Name of Student: ${outstudent.name}</h3>
+                            <h4>Year Level: ${outstudent.year}</h4>
+                            <p>Department: ${outstudent.course}</p>
+                        </div>`;
+                    }
+                    else{
+                        throw new Error("Student Not Found!");
+                    }
+                    
+                })
+                .catch((error) => {
+                    result.textContent = `Error: ${error.message}`;
+                })
+    
+        })
+
+    </script>
+</body>
+</html>
